@@ -37,21 +37,24 @@ def deposit(username):
 
 
 def withdrawal(username):
-    withdrawal_amount = input("\nHow much would you like to withdraw?\n---> ")
 
-    if type(int(withdrawal_amount)) == int:
-        if int(withdrawal_amount) <= account_details[username] - 1:
-            input(tw.dedent(f"""
-            ${withdrawal_amount}
-            Take your cash and press 'Enter'
-            """))
-            endPage(username)
-        else:
-            print("Insufficient funds")
-            endPage(username)
-    else:
-        print("Invalid Amount")
-        withdrawal(username)
+    while True:
+        try:
+            withdrawal_amount = int(input("\nHow much would you like to withdraw?\n---> "))
+            if int(withdrawal_amount) <= account_details[username] - 1:
+                input(tw.dedent(f"""
+                ${withdrawal_amount}
+                Take your cash and press 'Enter'
+                """))
+                endPage(username)
+            else:
+                print("Insufficient funds")
+                endPage(username)
+            break
+
+        except ValueError:
+            print("Invalid input")
+            withdrawal(username)
 
 
 def transactions(username):
@@ -156,5 +159,3 @@ def startPage():
 startPage()
 
 exit(0)
-
-# print('$' + str(account_details.get(username)))
