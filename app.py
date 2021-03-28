@@ -1,0 +1,160 @@
+import textwrap as tw
+from datetime import datetime
+
+
+time_date = datetime.now()
+
+
+username_data = ['Admin']
+password_data = ['01234567']
+
+account_details = {'Admin': 500.00}
+
+
+def endPage(username):
+    while True:
+        another_transaction = input(tw.dedent("""
+                                Would you like to perform another transaction?
+                                Enter yes or no
+                                ---> """))
+
+        if another_transaction.lower() == 'yes':
+            transactions(username)
+            break
+        elif another_transaction.lower() == 'no':
+            print('\nThank you for banking with us!')
+            exit(0)
+        else:
+            print("\nInvalid response")
+
+
+def complaints(username):
+    pass
+
+
+def deposit(username):
+    pass
+
+
+def withdrawal(username):
+    withdrawal_amount = input("\nHow much would you like to withdraw?\n---> ")
+
+    if type(int(withdrawal_amount)) == int:
+        if int(withdrawal_amount) <= account_details[username] - 1:
+            input(tw.dedent(f"""
+            ${withdrawal_amount}
+            Take your cash and press 'Enter'
+            """))
+            endPage(username)
+        else:
+            print("Insufficient funds")
+            endPage(username)
+    else:
+        print("Invalid Amount")
+        withdrawal(username)
+
+
+def transactions(username):
+    print(tw.dedent("""
+                    What transaction would you like to perform?
+                    1. Make a cash withdrawal
+                    2. Make a cash deposit
+                    3. Register a complaint\n"""))
+
+    while True:  # repeat process of collecting input until valid
+
+        selected_option = input("Enter 1, 2 or 3 \n---> ")
+        print(selected_option)
+
+        if selected_option == "1":
+            withdrawal(username)
+            break
+        elif selected_option == "2":
+            deposit(username)
+            break
+        elif selected_option == "3":
+            complaints(username)
+            break
+        else:
+            print("invalid option. Please try again\n")
+
+
+def login():
+    while True:
+        username = input("\nEnter your username\n---> ")
+
+        if username in username_data:
+            break
+        else:
+            print("Username entered does not exist. Try again\n")
+
+    while True:
+        password = input("Enter your password\n---> ")
+        if (password in password_data and
+                username_data.index(username) == password_data.index(password)):
+
+            print(
+                f"\nWelcome {username}!\n"
+                f"{time_date.strftime('%a, %b %d, 20%y')}\n"  # displays the current date.
+                f"{time_date.strftime('%I:%M:%S %p')}"  # displays the current time.
+                  )
+
+            transactions(username)
+            break
+        else:
+            print("\nIncorrect password. Try again\n")
+
+
+def register():
+    username = input("\nEnter a username \n---> ")
+    if username in username_data:
+        print("Username has been taken.\n")
+        register()
+    else:
+        username_data.append(username)
+
+    while True:
+        password = input("\nEnter a password\n"
+                         "(password must be at least 8 characters)\n"
+                         "--->"
+                         )
+        if len(password) >= 8:
+            password_data.append(password)
+            print(tw.dedent("""
+                            Registration successful.
+                            Proceed to login.
+                            """))
+            account_details[username] = 100.00
+            login()
+            break
+        else:
+            print("\nPassword too weak!")
+
+
+def startPage():
+    print(tw.dedent("""
+                    Welcome to myATM!
+                    1. Login
+                    2. Open Account\n"""))
+
+    while True:  # repeat process of collecting input until valid
+
+        selected_option = input("Enter 1 or 2 \n---> ")
+        print(selected_option)
+
+        if selected_option == "1":
+            login()
+            break
+        elif selected_option == "2":
+            register()
+            break
+        else:
+            print("invalid option. Please try again\n")
+
+
+# On app launch
+startPage()
+
+exit(0)
+
+# print('$' + str(account_details.get(username)))
