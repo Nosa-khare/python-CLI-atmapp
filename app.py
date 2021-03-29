@@ -3,8 +3,8 @@ from datetime import datetime
 
 time_date = datetime.now()
 
-username_data = ['Admin']
-password_data = ['01234567']
+username_data = ['Admin']  # list containing username of all registered users
+password_data = ['01234567']  # list containing passwords of all accounts
 
 account_details = {'Admin': 500.00}  # dict containing the account balance of all users.
 
