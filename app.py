@@ -31,9 +31,14 @@ def endPage(username):
 
 
 def complaints(username):
-    complaint = input("What issue would you like to report?")
-    complaint_log[username] = complaint
+
+    complaint_count = 0  # helps count number of complaint lodged by user for dict formatting
+
+    complaint = input("\nWhat issue would you like to report?\n---> ")
+    complaint_log[username + "_" + str(complaint_count)] = complaint
     print("Complaint logged successfully\nThank you for contacting us!")
+    complaint_count += 1
+    print(complaint_log)
     endPage(username)
 
 
