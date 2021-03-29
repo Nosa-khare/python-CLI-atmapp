@@ -12,6 +12,7 @@ complaint_log = {}  # dict containing all complaints lodged by users
 
 
 def endPage(username):
+
     """ last page of the app that leads to exit """
 
     while True:
@@ -31,6 +32,7 @@ def endPage(username):
 
 
 def complaints(username):
+
     """ function to handle collection of complaints from users """
 
     complaint_count = 0  # helps count number of complaint lodged by user for dict formatting
@@ -45,6 +47,7 @@ def complaints(username):
 
 
 def deposit(username):
+
     """ to collect deposit and add to account balance """
 
     while True:
@@ -62,6 +65,7 @@ def deposit(username):
 
 
 def withdrawal(username):
+
     """ function to dispense cash withdrawals """
 
     while True:
@@ -85,6 +89,7 @@ def withdrawal(username):
 
 
 def transactions(username):
+
     """ function to allow user select what
         transaction is to be performed """
 
@@ -113,6 +118,7 @@ def transactions(username):
 
 
 def login():
+
     """ function to enable registered users login """
 
     while True:
