@@ -10,6 +10,8 @@ password_data = ['01234567']
 
 account_details = {'Admin': 500.00}
 
+complaint_log = {}
+
 
 def endPage(username):
     while True:
@@ -29,11 +31,30 @@ def endPage(username):
 
 
 def complaints(username):
-    pass
+
+    complaint_count = 0  # helps count number of complaint lodged by user for dict formatting
+
+    complaint = input("\nWhat issue would you like to report?\n---> ")
+    complaint_log[username + "_" + str(complaint_count)] = complaint
+    print("Complaint logged successfully\nThank you for contacting us!")
+    complaint_count += 1
+    print(complaint_log)
+    endPage(username)
 
 
 def deposit(username):
-    pass
+    while True:
+        try:
+            deposit_amount = int(input("\nHow much would you like to deposit?\n---> "))
+            account_details[username] += deposit_amount
+            print(tw.dedent(f"""
+                ${deposit_amount} deposited successfully!
+                Current balance: ${account_details[username]}
+                """))
+            endPage(username)
+        except ValueError:
+            print("Invalid input")
+            endPage(username)
 
 
 def withdrawal(username):
@@ -54,7 +75,7 @@ def withdrawal(username):
 
         except ValueError:
             print("Invalid input")
-            withdrawal(username)
+            endPage(username)
 
 
 def transactions(username):
