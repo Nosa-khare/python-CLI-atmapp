@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../.idea/PycharmProjects.iml" filepath="$PROJECT_DIR$/../.idea/PycharmProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SQLForBigData/.idea/SQLForBigData.iml" filepath="$PROJECT_DIR$/../SQLForBigData/.idea/SQLForBigData.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pythonProject.iml" filepath="$PROJECT_DIR$/.idea/pythonProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/../snbank/.idea/snbank.iml" filepath="$PROJECT_DIR$/../snbank/.idea/snbank.iml" />
     </modules>

@@ -5,5 +5,7 @@
     <orderEntry type="jdk" jdkName="Python 3.8 (pythonProject)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="snbank" />
+    <orderEntry type="module" module-name="SQLForBigData" />
+    <orderEntry type="module" module-name="PycharmProjects" />
   </component>
 </module>
