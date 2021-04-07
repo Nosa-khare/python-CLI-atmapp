@@ -255,5 +255,5 @@ def startPage():
             print("invalid option. Please try again\n")
 
 
-# On app launch
+# Initialize app
 startPage()
