@@ -182,9 +182,10 @@ def startPage():
     """ start of application"""
 
     print(tw.dedent("""
-                    Welcome to myATM!
-                    1. Login
-                    2. Open Account\n"""))
+                    Welcome to BankPHP!
+                    Do you have an account with us?
+                    1. Yes
+                    2. No\n"""))
 
     while True:  # repeat process of collecting input until valid
 
@@ -201,5 +202,5 @@ def startPage():
             print("invalid option. Please try again\n")
 
 
-# On app launch
+# Initialize app
 startPage()
