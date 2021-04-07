@@ -226,7 +226,8 @@ def register():
     customerDatabase.write("\n")  # writes a newline in file in view of next dump
     customerDatabase.close()
 
-    print("Account has been registered successfully!")
+    print("Account has been registered successfully!"
+          f"This is your account details: {customer_details}")
 
 
 def startPage():
