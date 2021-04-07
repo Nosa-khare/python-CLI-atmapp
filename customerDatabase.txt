@@ -1,0 +1,1 @@
+{"Account Name": ["Adekunle", "Adekuntee"], "Account Number": "1500646403", "Account Balance": "$1232", "Account Email": "ade.ade", "Password": "adeademyname", "Account Type": "Savings account"}
