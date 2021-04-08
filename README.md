@@ -17,12 +17,14 @@ The code consists of ten functions:
 
 
 * _register:_
+  
     Here the customer details are collected, account name, account email, account password, account type, opening balance, etc.
     The generateAccounNumber function is called to provide a new account number for user. 
     After successful account creation, the details of the new account is stored in a dictionary and kept in the customer database.
 
 
 * _generateAccountNumber_:
+  
     when called this helps generate a 10 digit random accout number starting with 150..
 
 
@@ -33,6 +35,7 @@ The code consists of ten functions:
 
 
 * _getPassword:_
+  
     This is called in the login function after collecting user password. It checkes through customerDatabase to verify password
 
 
@@ -43,16 +46,20 @@ The code consists of ten functions:
 
 
 * _deposit:_
-    This enable the user make cash deposit into his/her account. After deposit is made the account balance is updated.
+  
+    This enables the user make cash deposit into his/her account. After deposit is made the account balance is updated.
 
 
 * _withdrawal:_
-    This enable the user make cash withdrawal from his/her account. After withdrawal is made the account balance is updated.
+  
+    This enables the user make cash withdrawal from his/her account. After withdrawal is made the account balance is updated.
 
 
 * _complaints:_
+  
     Here the user inputs what ever complaints he/she has. the complaints are then stored in a dictionary and entered into the complaint database.
 
 
-* _endPage:_  
+* _endPage:_
+  
     This brings up the exit options.
