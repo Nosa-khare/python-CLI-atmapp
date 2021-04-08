@@ -6,6 +6,8 @@ import json
 
 time_date = datetime.now()
 
+complaint_count = 1  # helps count number of complaint lodged by user for dict formatting
+
 
 def endPage(details):
     """ last page of the app that leads to exit """
@@ -29,7 +31,7 @@ def endPage(details):
 def complaints(details):
     """ function to handle collection of complaints from users """
 
-    complaint_count = 1  # helps count number of complaint lodged by user for dict formatting
+    global complaint_count
 
     complaint = input("\nWhat issue would you like to report?\n---> ")
 
