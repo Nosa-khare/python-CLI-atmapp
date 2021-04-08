@@ -1,1 +1,2 @@
-{"Account Name": ["Adekunle", "Adekuntee"], "Account Number": "1500646403", "Account Balance": "$1232", "Account Email": "ade.ade", "Password": "adeademyname", "Account Type": "Savings account"}
+{"Account Name": "Nosakhare Edokpayi", "Account Number": "1508354731", "Account Balance": "$1000000", "Account Email": "co.nosakhare@gmail.com", "Password": "nosapassword", "Account Type": "Current Account"}
+{"Account Name": "Michael Edokpayi", "Account Number": "1501371871", "Account Balance": 1200000, "Account Email": "mike@gmail.com", "Password": "mikepassword", "Account Type": "Current Account"}

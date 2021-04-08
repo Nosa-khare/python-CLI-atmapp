@@ -9,146 +9,158 @@ time_date = datetime.now()
 complaint_log = {}  # dict containing all complaints lodged by users
 
 
-# def endPage(username):
-#
-#     """ last page of the app that leads to exit """
-#
-#     while True:
-#         another_transaction = input(tw.dedent("""
-#                                 Would you like to perform another transaction?
-#                                 Enter yes or no
-#                                 ---> """))
-#
-#         if another_transaction.lower() == 'yes':
-#             transactions(username)
-#             break
-#         elif another_transaction.lower() == 'no':
-#             print('\nThank you for banking with us!')
-#             exit(0)
-#         else:
-#             print("\nInvalid response")
-#
-#
-# def complaints(username):
-#
-#     """ function to handle collection of complaints from users """
-#
-#     complaint_count = 0  # helps count number of complaint lodged by user for dict formatting
-#
-#     complaint = input("\nWhat issue would you like to report?\n---> ")
-#     complaint_log[username + "_" + str(complaint_count)] = complaint  # collects the complaint and inputs it in the
-#     # complaint dict as 'username_count': 'complaint'.
-#     print("Complaint logged successfully\nThank you for contacting us!")
-#     complaint_count += 1  # increases the complaint count by one
-#
-#     endPage(username)
-#
-#
-# def deposit(username):
-#
-#     """ to collect deposit and add to account balance """
-#
-#     while True:
-#         try:
-#             deposit_amount = int(input("\nHow much would you like to deposit?\n---> "))
-#             account_details[username] += deposit_amount  # increases account balance with deposit amount
-#             print(tw.dedent(f"""
-#                 ${deposit_amount} deposited successfully!
-#                 Current balance: ${account_details[username]}
-#                 """))
-#             endPage(username)
-#         except ValueError:  # to handle non-numeric inputs
-#             print("Invalid input")
-#             endPage(username)
-#
-#
-# def withdrawal(username):
-#
-#     """ function to dispense cash withdrawals """
-#
-#     while True:
-#         try:
-#             withdrawal_amount = int(input("\nHow much would you like to withdraw?\n---> "))
-#             if int(withdrawal_amount) <= account_details[username] - 1:  # check if account balance is sufficient to
-#                 # dispense withdrawal amount (leaving at least $1 balance)
-#                 input(f"${withdrawal_amount}\n"  # display amount dispensed by ATM
-#                       "Take your cash and press 'Enter'\n")
-#                 account_details[username] -= withdrawal_amount  # decreases account balance with deposit amount
-#
-#                 endPage(username)
-#             else:
-#                 print("Insufficient funds")
-#                 endPage(username)
-#             break
-#
-#         except ValueError:
-#             print("Invalid input")
-#             endPage(username)
-#
-#
-# def transactions(username):
-#
-#     """ function to allow user select what
-#         transaction is to be performed """
-#
-#     print(tw.dedent("""
-#                     What transaction would you like to perform?
-#                     1. Make a cash withdrawal
-#                     2. Make a cash deposit
-#                     3. Register a complaint\n"""))
-#
-#     while True:  # repeat process of collecting input until valid
-#
-#         selected_option = input("Enter 1, 2 or 3 \n---> ")
-#         print(selected_option)
-#
-#         if selected_option == "1":
-#             withdrawal(username)
-#             break
-#         elif selected_option == "2":
-#             deposit(username)
-#             break
-#         elif selected_option == "3":
-#             complaints(username)
-#             break
-#         else:
-#             print("invalid option. Please try again\n")
-#
-#
-# def login():
-#
-#     """ function to enable registered users login """
-#
-#     while True:
-#         username = input("\nEnter your username\n---> ")
-#
-#         if username in username_data:  # confirm username exists in customerDatabase.txt
-#             break
-#         else:
-#             print("Username entered does not exist. Try again\n")
-#
-#     while True:
-#         password = input("Enter your password\n---> ")
-#         if (password in password_data and
-#                 username_data.index(username) == password_data.index(password)):  # to check if password exists in
-#             # customerDatabase.txt and whether it matches the username entered
-#
-#             print(
-#                 f"\nWelcome {username}!\n"
-#                 f"{time_date.strftime('%a, %b %d, 20%y')}\n"  # displays the current date.
-#                 f"{time_date.strftime('%I:%M:%S %p')}"  # displays the current time.
-#             )
-#
-#             transactions(username)
-#             break
-#         else:
-#             print("\nIncorrect password. Try again\n")
+def endPage(details):
+
+    """ last page of the app that leads to exit """
+
+    while True:
+        another_transaction = input(tw.dedent("""
+                                Would you like to perform another transaction?
+                                Enter yes or no
+                                ---> """))
+
+        if another_transaction.lower() == 'yes':
+            transactions(details)
+            break
+        elif another_transaction.lower() == 'no':
+            print(f"\nThank you for banking with us {details['Account Name']}!")
+            exit()
+        else:
+            print("\nInvalid response")
+
+
+def complaints(details):
+
+    """ function to handle collection of complaints from users """
+
+    complaint_count = 1  # helps count number of complaint lodged by user for dict formatting
+
+    complaint = input("\nWhat issue would you like to report?\n---> ")
+    complaint_log[details['Account Name'] + "_" + str(complaint_count)] = complaint  # collects the complaint and
+    # inputs it in the complaint dict as 'username_count': 'complaint'.
+
+    print("Complaint logged successfully\nThank you for contacting us!")
+    complaint_count += 1  # increases the complaint count by one
+    endPage(details)
+
+
+def deposit(details):
+
+    """ to collect deposit and add to account balance """
+
+    while True:
+        try:
+            deposit_amount = int(input("\nHow much would you like to deposit?\n---> "))
+            details['Account Balance'] += deposit_amount  # increases account balance with deposit amount
+            print(tw.dedent(f"""
+                ${deposit_amount} deposited successfully!
+                Current balance: ${details['Account Balance']}
+                """))
+            endPage(details)
+        except ValueError:  # to handle non-numeric inputs
+            print("Invalid input")
+            endPage(details)
+
+
+def withdrawal(details):
+
+    """ function to dispense cash withdrawals """
+
+    while True:
+        try:
+            withdrawal_amount = int(input("\nHow much would you like to withdraw?\n---> "))
+
+            if int(withdrawal_amount) <= details['Account Balance'] - 1:  # check if account balance is sufficient to
+                # dispense withdrawal amount (leaving at least $1 balance)
+
+                input(f"${withdrawal_amount}\n"  # display amount dispensed by ATM
+                      "Take your cash and press 'Enter'\n")
+                details['Account Balance'] -= withdrawal_amount  # decreases account balance with deposit amount
+                endPage(details)
+            else:
+                print("Insufficient funds")
+                endPage(details)
+            break
+
+        except ValueError:
+            print("Invalid input")
+            endPage(details)
+
+
+def transactions(details):
+
+    """ function to allow user select what
+        transaction is to be performed """
+
+    print(tw.dedent("""
+                    What transaction would you like to perform?
+                    1. Make a cash withdrawal
+                    2. Make a cash deposit
+                    3. Register a complaint
+                    4. Close App\n"""))
+
+    while True:  # repeat process of collecting input until valid response is gotten
+
+        selected_option = input("1, 2, 3, 4 \n---> ")
+        print(selected_option)
+
+        if selected_option == "1":
+            withdrawal(details)
+            break
+        elif selected_option == "2":
+            deposit(details)
+            break
+        elif selected_option == "3":
+            complaints(details)
+            break
+        elif selected_option == "4":
+            endPage(details)
+        else:
+            print("invalid option. Please try again\n")
+
+
+def getPassword(details):
+
+    password = input("Enter your password\n---> ")
+
+    if password == details['Password']:  # to check if password is correct
+
+        print(
+            f"\nWelcome {details['Account Name']}!\n"
+            f"{time_date.strftime('%a, %b %d, 20%y')}\n"  # displays the current date.
+            f"{time_date.strftime('%I:%M:%S %p')}"  # displays the current time.
+            )
+        transactions(details)
+    else:
+        print("\nIncorrect password. Try again\n")
+        getPassword(details)
+
+
+def login():
+    """ function to enable registered users login """
+
+    account_login = input("\nEnter your account number\n---> ")
+
+    customerDatabase_file = open("customerDatabase.txt", "r").read()
+    customer_list = customerDatabase_file.splitlines()
+
+    found_account = False
+    count = 1
+    for details in customer_list:
+        details = json.loads(details)
+        if account_login == details['Account Number']:  # confirm username exists in customerDatabase.txt
+            getPassword(details)
+            found_account = True
+        if count == len(customer_list) and not found_account:  # if all dictionaries has been looped through
+            # and not found
+            print(f"No record of account with Account Number: {account_login} found")
+            startPage()
 
 
 def generateAccountNumber():
     # generating an account number
     number_list = [1, 5, 0]  # to enable every generated acc number start with 150
-    [number_list.append(randint(0, 9)) for x in range(7)]
+    [number_list.append(randint(0, 9)) for _ in range(7)]
     account_number = "".join([str(i) for i in number_list])  # converts all integers to strings and joins
     return account_number
 
@@ -161,11 +173,11 @@ def register():
     firstname = input("\nEnter your Firstname \n---> ")
     lastname = input("\nEnter your Firstname \n---> ")
 
-    account_name = firstname, lastname   # to get an account name
+    account_name = firstname + ' ' + lastname  # to get an account name
 
     while True:
         account_email = input("\nEnter your you email address \n---> ")
-        if "." in list(account_email):
+        if "." in list(account_email) and "@" in list(account_email):
             break
         else:
             print("Invalid email address")
@@ -214,7 +226,7 @@ def register():
 
     customer_details = {"Account Name": account_name,
                         "Account Number": account_number,
-                        "Account Balance": f"${opening_balance}",
+                        "Account Balance": opening_balance,
                         "Account Email": account_email,
                         "Password": account_password,
                         "Account Type": account_type
@@ -226,26 +238,26 @@ def register():
     customerDatabase.write("\n")  # writes a newline in file in view of next dump
     customerDatabase.close()
 
-    print("Account has been registered successfully!"
-          f"This is your account details: {customer_details}")
+    print("\nAccount has been registered successfully!\n"
+          f"These are your account details: \n{customer_details}")
+    endPage(firstname)
 
 
 def startPage():
     """ start of application"""
 
     print(tw.dedent("""
-                    Welcome to BankPHP!
                     1. Login
                     2. Open A New Account
                     3. Close App\n"""))
 
     while True:  # repeat process of collecting input until valid
 
-        selected_option = input("Enter 1 or 2 \n---> ")
+        selected_option = input("1, 2, 3 \n---> ")
         print(selected_option)
 
         if selected_option == "1":
-            # login()
+            login()
             break
         elif selected_option == "2":
             register()
@@ -257,4 +269,7 @@ def startPage():
 
 
 # Initialize app
+
+print("Welcome to BankPHP!")
+
 startPage()
