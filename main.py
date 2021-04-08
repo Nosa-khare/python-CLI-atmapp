@@ -8,7 +8,6 @@ time_date = datetime.now()
 
 
 def endPage(details):
-
     """ last page of the app that leads to exit """
 
     while True:
