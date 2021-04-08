@@ -6,11 +6,8 @@ import json
 
 time_date = datetime.now()
 
-complaint_log = {}  # dict containing all complaints lodged by users
-
 
 def endPage(details):
-
     """ last page of the app that leads to exit """
 
     while True:
@@ -30,22 +27,25 @@ def endPage(details):
 
 
 def complaints(details):
-
     """ function to handle collection of complaints from users """
 
     complaint_count = 1  # helps count number of complaint lodged by user for dict formatting
 
     complaint = input("\nWhat issue would you like to report?\n---> ")
-    complaint_log[details['Account Name'] + "_" + str(complaint_count)] = complaint  # collects the complaint and
-    # inputs it in the complaint dict as 'username_count': 'complaint'.
 
-    print("Complaint logged successfully\nThank you for contacting us!")
+    complaint_log_dict = {details['Account Name'] + "_" + str(  # dict containing all complaints lodged by users
+        complaint_count): complaint}  # inputs it in the complaint dict as 'username_count': 'complaint'.
+
+    with open('complaintLog.txt', 'a+') as complaintLog:
+        complaintLog.write(json.dumps(complaint_log_dict))
+        complaintLog.write("\n")
+
+    print("\nComplaint logged successfully\nThank you for contacting us!")
     complaint_count += 1  # increases the complaint count by one
     endPage(details)
 
 
 def deposit(details):
-
     """ to collect deposit and add to account balance """
 
     while True:
@@ -63,7 +63,6 @@ def deposit(details):
 
 
 def withdrawal(details):
-
     """ function to dispense cash withdrawals """
 
     while True:
@@ -88,7 +87,6 @@ def withdrawal(details):
 
 
 def transactions(details):
-
     """ function to allow user select what
         transaction is to be performed """
 
@@ -120,7 +118,6 @@ def transactions(details):
 
 
 def getPassword(details):
-
     password = input("Enter your password\n---> ")
 
     if password == details['Password']:  # to check if password is correct
@@ -251,21 +248,18 @@ def startPage():
                     2. Open A New Account
                     3. Close App\n"""))
 
-    while True:  # repeat process of collecting input until valid
+    selected_option = input("1, 2, 3 \n---> ")
+    print(selected_option)
 
-        selected_option = input("1, 2, 3 \n---> ")
-        print(selected_option)
-
-        if selected_option == "1":
-            login()
-            break
-        elif selected_option == "2":
-            register()
-            break
-        elif selected_option == "3":
-            exit()
-        else:
-            print("invalid option. Please try again\n")
+    if selected_option == "1":
+        login()
+    elif selected_option == "2":
+        register()
+    elif selected_option == "3":
+        exit()
+    else:
+        print("invalid option. Please try again\n")
+        startPage()  # repeat process of collecting input until valid response gotten from user
 
 
 # Initialize app
