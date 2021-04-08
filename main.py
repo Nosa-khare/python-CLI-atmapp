@@ -8,7 +8,7 @@ time_date = datetime.now()
 
 
 def endPage(details):
-    
+
     """ last page of the app that leads to exit """
 
     while True:
@@ -127,7 +127,7 @@ def getPassword(details):
             f"\nWelcome {details['Account Name']}!\n"
             f"{time_date.strftime('%a, %b %d, 20%y')}\n"  # displays the current date.
             f"{time_date.strftime('%I:%M:%S %p')}"  # displays the current time.
-        )
+            )
         transactions(details)
     else:
         print("\nIncorrect password. Try again\n")
